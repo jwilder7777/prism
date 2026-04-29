@@ -1,0 +1,39 @@
+{
+  "name": "prism-vscode-extension",
+  "displayName": "Prism",
+  "description": "Bridges VS Code to the Prism workspace app.",
+  "version": "0.0.0",
+  "private": true,
+  "publisher": "prism",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "prism.showStatus",
+        "title": "Prism: Show Connection Status"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node esbuild.js --minify",
+    "watch": "node esbuild.js --watch",
+    "typecheck": "tsc -b --noEmit",
+    "package": "vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@prism/protocol": "workspace:*",
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.95.0",
+    "@types/ws": "^8.5.13",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.0"
+  }
+}

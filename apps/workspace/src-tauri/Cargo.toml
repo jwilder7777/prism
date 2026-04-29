@@ -1,0 +1,27 @@
+[package]
+name = "prism-workspace"
+version = "0.0.0"
+description = "Prism Workspace — agent-native development workspace"
+authors = ["Prism contributors"]
+edition = "2021"
+rust-version = "1.77"
+
+[lib]
+name = "prism_workspace_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tauri = { version = "2", features = [] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "io-util", "sync"] }
+tokio-tungstenite = "0.23"
+futures-util = "0.3"
+dirs = "5"
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
