@@ -44,7 +44,13 @@ The agent layer is broader than chat:
 - Multi-account git auth, per project
 - Mission Control: cross-project running-agents view
 - Agent picker — connect ACP agents (Claude Code default), connect SDK agents (Anthropic, OpenAI)
-- Run an agent within a project, with orthogonal per-run selectors: workspace (in-tree / worktree), permission (manual / auto-accept-edits / skip-all), thinking (off / think / think-hard / ultrathink), model (per agent's offerings). YOLO is shorthand for `worktree=off` + `permission=skip-all` (which maps to Claude Code's `--dangerously-skip-permissions`); brain icon represents the thinking dimension specifically.
+- Run an agent within a project, with orthogonal per-run selectors:
+  - **Workspace:** in-tree / worktree (branch icon)
+  - **Permission:** manual / auto-accept-edits / skip-all (shield icon) — skip-all maps to Claude Code's `--dangerously-skip-permissions`
+  - **Thinking:** off / think / think-hard / ultrathink (brain icon)
+  - **Model:** per agent's offerings (model name as chip)
+  - **Network:** online / offline (globe icon) — v1 is *soft* (passes through as env var / flag for cooperative agents); OS-level enforcement (network namespaces on Linux, Network Extension on macOS, WFP on Windows) is v2+
+  YOLO is shorthand for `worktree=off + permission=skip-all`. Each dimension is independent and remembered per-project as defaults with per-run overrides.
 - Per-agent live status, cost tracking, action log
 - Approval prompts surfaced in Mission Control
 - Native diff view with accept/reject per hunk (Monaco diff component)
@@ -107,7 +113,7 @@ The thinnest Mission Control that solves a real Josh problem.
 
 **Phase 2 — Multi-agent + multi-project (≈ 3 weeks).**
 - Multiple agents per project, multiple projects
-- Per-run selectors (workspace, permission, thinking, model) as inline chips next to the agent input
+- Per-run selectors (workspace, permission, thinking, model, network) as inline chips next to the agent input
 - Approval prompts in Mission Control (only fire when permission selector ≠ skip-all)
 - Notification feed
 
